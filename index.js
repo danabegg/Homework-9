@@ -39,13 +39,13 @@ var locations = [
           infowindow.setContent(locations[i][0]);
           infowindow.open(map, marker);
            if (locations[i][1]) {
-            alert("Latitude,Longitude: 48.463417,-123.309940");
+            alert("Latitude,Longitude: 48.463449,-123.309662");
             alert(count++);
         } else if (locations[i][2]) {
-            alert("Latitude,Longitude: 48.462781,-123.313481" + count);
+            alert("Latitude,Longitude: 48.466247,-123.309753" + count);
             alert(count++);
         } else {
-            alert("Latitude,Longitude: 48.465357,-123.308224" + count)
+            alert("Latitude,Longitude: 48.465173,-123.308397" + count)
             alert(count++);
         };
         }
@@ -54,7 +54,6 @@ var locations = [
 
 
 ///////////////////////
-
 
 //Test for browser compatibility
 if (window.openDatabase) {
@@ -116,17 +115,9 @@ function addCar() {
     //check to ensure the mydb object has been created
     if (mydb) {
         //get the values of the make and model text inputs
+        var custom = document.getElementById("custom").value;
         var make = document.getElementById("carmake").value;
         var model = document.getElementById("carmodel").value;
-
-    var marker, e;
-    for (e = 0; e < locations.length; e++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng("custom"),
-        map: map
-      });
-
-
 
         //Test to ensure that the user has entered both a make and model
         if (make !== "" && model !== "") {
