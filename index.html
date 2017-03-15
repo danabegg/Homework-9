@@ -10,25 +10,29 @@
    
 </html>
 
-
 <h1>Google Maps</h1>
 
 <div id="controls">
     <p>Add a location to the database</p>
-    <label>Location: </label><input type="text" id="custom" /><br />
-    <label>Latitude: </label><input type="text" id="carmake" /><br />
-    <label>Longtitude: </label><input type="text" id="carmodel" /><br />
-    <button type="button" id="addcar" onclick="addCar();">Add Location</button>
+    <label>Name: </label><input type="text" id="name" /><br />
+    <label>Latitude: </label><input type="text" id="lat" /><br />
+    <label>Longtitude: </label><input type="text" id="long" /><br />
+    <button type="button" id="addlocation" onclick="addlocation();">Add Location</button>
 </div>
-<div id="carlistholder">
+<div id="locationlist">
     <h3>Your Locations</h3>
-    <ul id="carlist">
+    <ul id="location">
     </ul>
 </div>
 
+
+
+
 <form action="save.php" method="POST">
     <div id="value">
+
     </div>
     <input type="submit"
     </form>
 
+<div id="map_canvas" style="width:750; height:500"></div>
