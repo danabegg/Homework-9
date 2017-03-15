@@ -119,6 +119,15 @@ function addCar() {
         var make = document.getElementById("carmake").value;
         var model = document.getElementById("carmodel").value;
 
+    var marker, e;
+    for (e = 0; e < locations.length; e++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng("custom"),
+        map: map
+      });
+
+
+
         //Test to ensure that the user has entered both a make and model
         if (make !== "" && model !== "") {
             //Insert the user entered details into the cars table, note the use of the ? placeholder, these will replaced by the data passed in as an array as the second parameter
