@@ -1,21 +1,3 @@
-var locations = [
-    [
-        "Bibliocafe",
-        48.463417, 
-         -123.309940
-    ],
-    [
-    		"MacLaurin Building",
-        48.462781,
-        -123.313481
-    ],    
-    [
-        "Cinacenta",
-        48.465357,
-         -123.308224
-    ],
-]
-
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
       center: new google.maps.LatLng(48.463152,  -123.311588),
@@ -23,36 +5,11 @@ var locations = [
     });
 
     var infowindow = new google.maps.InfoWindow();
+    
 
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2], locations[i][3]),
-        map: map
-      });
-
-    var count = 0;
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-           if (locations[i][1]) {
-            alert("Latitude,Longitude: 48.463449,-123.309662");
-            alert(count++);
-        } else if (locations[i][2]) {
-            alert("Latitude,Longitude: 48.466247,-123.309753" + count);
-            alert(count++);
-        } else {
-            alert("Latitude,Longitude: 48.465173,-123.308397" + count)
-            alert(count++);
-        };
-        }
-      })(marker, i));
-    }
-
-
+var marker = [];
+        var i; 
+        
 ///////////////////////
 //Test for browser compatibility
 if (window.openDatabase) {
@@ -63,6 +20,7 @@ if (window.openDatabase) {
     mydb.transaction(function(t) {
         t.executeSql("CREATE TABLE IF NOT EXISTS locations (id INTEGER PRIMARY KEY ASC, name TEXT, lat TEXT, long TEXT)");
     });
+
 
 } else {
     alert("WebSQL is not supported by your browser!");
@@ -118,6 +76,12 @@ function addlocation() {
 
         //Test to ensure that the user has entered both a make and model
         if (name !== "" && lat !== "" && long !== "") {
+
+marker.push(new google.maps.Marker({
+    position: new google.maps.LatLng(lat, long), 
+    map: map
+}));
+
             //Insert the user entered details into the cars table, note the use of the ? placeholder, these will replaced by the data passed in as an array as the second parameter
             mydb.transaction(function(t) {
                 t.executeSql("INSERT INTO locations (name, lat, long) VALUES (?, ?, ?)", [name, lat, long]);
@@ -139,7 +103,7 @@ function deletelocation(id) {
     if (mydb) {
         //Get all the cars from the database with a select statement, set outputCarList as the callback function for the executeSql command
         mydb.transaction(function(t) {
-            t.executeSql("DELETE FROM locations WHERE id=?", [id], outputLocations);
+            t.executeSql("DELETE FROM locations WHERE id=?", [id], outputlocations);
         });
     } else {
         alert("db not found, your browser does not support web sql!");
