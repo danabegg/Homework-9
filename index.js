@@ -64,8 +64,6 @@ if (window.openDatabase) {
         t.executeSql("CREATE TABLE IF NOT EXISTS locations (id INTEGER PRIMARY KEY ASC, name TEXT, lat TEXT, long TEXT)");
     });
 
-
-
 } else {
     alert("WebSQL is not supported by your browser!");
 }
